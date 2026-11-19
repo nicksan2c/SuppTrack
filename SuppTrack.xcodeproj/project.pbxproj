@@ -7,19 +7,43 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0BC22DE62682190CB4210215 /* BottleDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42F2430030DEDB602D9B2EC /* BottleDetailView.swift */; };
+		0C09A33F2F7F95E380128454 /* DoseLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E5947183B0AB026851688F /* DoseLog.swift */; };
+		0EE02BC847AB1E6417CA6C2A /* ManualEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59243CAAEF8F321C23EA94EB /* ManualEntryView.swift */; };
 		187C7EABB2DD3936F0A745D6 /* DisclaimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E93AECC04A12BDBAF0E5CC7 /* DisclaimerView.swift */; };
 		318FE2731F50BAD91D842866 /* SuppTrackApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE03EB79A1A27C6A5E95607B /* SuppTrackApp.swift */; };
+		3B4B16181D0AB8DCE8E16A36 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D9B0323552F05F5A1CFF0A /* Item.swift */; };
 		9C9F54FCBC9A2C2BC3CC2FFE /* SuppTrackCore in Frameworks */ = {isa = PBXBuildFile; productRef = 4224DAE9D2FCF47CF7E1B149 /* SuppTrackCore */; };
 		A281D3CCABB2C9C117AEC837 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0073CB0F5E71D0506E9F03A /* SettingsView.swift */; };
 		BD4F2AC7AB8052E87582C402 /* RootTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC43D2D27729FCB669079CC /* RootTabView.swift */; };
+		D7479B1BDC0764490D715796 /* SuppTrackCore in Frameworks */ = {isa = PBXBuildFile; productRef = 4FF7EF069053DEBBD14B56DA /* SuppTrackCore */; };
+		E12DD20B596F66B6E327BD8E /* ItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA5C550C1541C8DE26A0D334 /* ItemTests.swift */; };
+		E25EFCD43DDA3C9DBB6DC3C9 /* BottlesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0311D90499320610537F4D07 /* BottlesView.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		435727578756B4CBD91BC0A8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 41DB9221AB77CC20A8A17C46 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 63F95A740B37C5CB7F2E1BD0;
+			remoteInfo = SuppTrack;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		0311D90499320610537F4D07 /* BottlesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottlesView.swift; sourceTree = "<group>"; };
 		198851067D3BBF2871AD2499 /* SuppTrack.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = SuppTrack.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2958051B615ED85A63CFC76F /* SuppTrackTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = SuppTrackTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DFA0580F239C06D1AA6B76B /* SuppTrackCore */ = {isa = PBXFileReference; lastKnownFileType = folder; name = SuppTrackCore; path = Packages/SuppTrackCore; sourceTree = SOURCE_ROOT; };
+		59243CAAEF8F321C23EA94EB /* ManualEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualEntryView.swift; sourceTree = "<group>"; };
+		86E5947183B0AB026851688F /* DoseLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoseLog.swift; sourceTree = "<group>"; };
 		8E93AECC04A12BDBAF0E5CC7 /* DisclaimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisclaimerView.swift; sourceTree = "<group>"; };
 		AE03EB79A1A27C6A5E95607B /* SuppTrackApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuppTrackApp.swift; sourceTree = "<group>"; };
+		D5D9B0323552F05F5A1CFF0A /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		EA5C550C1541C8DE26A0D334 /* ItemTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTests.swift; sourceTree = "<group>"; };
 		F0073CB0F5E71D0506E9F03A /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		F42F2430030DEDB602D9B2EC /* BottleDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottleDetailView.swift; sourceTree = "<group>"; };
 		FBC43D2D27729FCB669079CC /* RootTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -32,6 +56,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F557DBB884EDEA04C4B7BC44 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D7479B1BDC0764490D715796 /* SuppTrackCore in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -39,8 +71,28 @@
 			isa = PBXGroup;
 			children = (
 				198851067D3BBF2871AD2499 /* SuppTrack.app */,
+				2958051B615ED85A63CFC76F /* SuppTrackTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		17969D96E8E80565803FDDCF /* Bottles */ = {
+			isa = PBXGroup;
+			children = (
+				F42F2430030DEDB602D9B2EC /* BottleDetailView.swift */,
+				0311D90499320610537F4D07 /* BottlesView.swift */,
+				59243CAAEF8F321C23EA94EB /* ManualEntryView.swift */,
+			);
+			path = Bottles;
+			sourceTree = "<group>";
+		};
+		17D142531507A48841137623 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				86E5947183B0AB026851688F /* DoseLog.swift */,
+				D5D9B0323552F05F5A1CFF0A /* Item.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		1E88B84C2E7905E75C2BE5A6 /* Packages */ = {
@@ -58,6 +110,8 @@
 				FBC43D2D27729FCB669079CC /* RootTabView.swift */,
 				F0073CB0F5E71D0506E9F03A /* SettingsView.swift */,
 				AE03EB79A1A27C6A5E95607B /* SuppTrackApp.swift */,
+				17969D96E8E80565803FDDCF /* Bottles */,
+				17D142531507A48841137623 /* Models */,
 			);
 			path = SuppTrack;
 			sourceTree = "<group>";
@@ -67,8 +121,17 @@
 			children = (
 				1E88B84C2E7905E75C2BE5A6 /* Packages */,
 				2F53202B57367D3B95C8264C /* SuppTrack */,
+				B10BE0498D6B657C241B7D09 /* SuppTrackTests */,
 				059CD5AC58610D7117BE51ED /* Products */,
 			);
+			sourceTree = "<group>";
+		};
+		B10BE0498D6B657C241B7D09 /* SuppTrackTests */ = {
+			isa = PBXGroup;
+			children = (
+				EA5C550C1541C8DE26A0D334 /* ItemTests.swift */,
+			);
+			path = SuppTrackTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -92,6 +155,26 @@
 			productName = SuppTrack;
 			productReference = 198851067D3BBF2871AD2499 /* SuppTrack.app */;
 			productType = "com.apple.product-type.application";
+		};
+		E8E737E9B087FA4F32C9FD55 /* SuppTrackTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B518704CC61891C53EED4FE2 /* Build configuration list for PBXNativeTarget "SuppTrackTests" */;
+			buildPhases = (
+				2DCDA0C847086B902ECAC711 /* Sources */,
+				F557DBB884EDEA04C4B7BC44 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F249FA09D8C7133C8DA41A35 /* PBXTargetDependency */,
+			);
+			name = SuppTrackTests;
+			packageProductDependencies = (
+				4FF7EF069053DEBBD14B56DA /* SuppTrackCore */,
+			);
+			productName = SuppTrackTests;
+			productReference = 2958051B615ED85A63CFC76F /* SuppTrackTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -125,16 +208,30 @@
 			projectRoot = "";
 			targets = (
 				63F95A740B37C5CB7F2E1BD0 /* SuppTrack */,
+				E8E737E9B087FA4F32C9FD55 /* SuppTrackTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
+		2DCDA0C847086B902ECAC711 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E12DD20B596F66B6E327BD8E /* ItemTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3D4F3AC85C92242AA801BB12 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0BC22DE62682190CB4210215 /* BottleDetailView.swift in Sources */,
+				E25EFCD43DDA3C9DBB6DC3C9 /* BottlesView.swift in Sources */,
 				187C7EABB2DD3936F0A745D6 /* DisclaimerView.swift in Sources */,
+				0C09A33F2F7F95E380128454 /* DoseLog.swift in Sources */,
+				3B4B16181D0AB8DCE8E16A36 /* Item.swift in Sources */,
+				0EE02BC847AB1E6417CA6C2A /* ManualEntryView.swift in Sources */,
 				BD4F2AC7AB8052E87582C402 /* RootTabView.swift in Sources */,
 				A281D3CCABB2C9C117AEC837 /* SettingsView.swift in Sources */,
 				318FE2731F50BAD91D842866 /* SuppTrackApp.swift in Sources */,
@@ -143,7 +240,32 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		F249FA09D8C7133C8DA41A35 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 63F95A740B37C5CB7F2E1BD0 /* SuppTrack */;
+			targetProxy = 435727578756B4CBD91BC0A8 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		057BCF26EBD063C9F4FD258C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.nicksan.supptrack.tests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SuppTrack.app/SuppTrack";
+			};
+			name = Release;
+		};
 		3A8D174FB2892C69D7385559 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -315,6 +437,23 @@
 			};
 			name = Release;
 		};
+		C74C4BCAF734127440A96715 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.nicksan.supptrack.tests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SuppTrack.app/SuppTrack";
+			};
+			name = Debug;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -336,6 +475,15 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
+		B518704CC61891C53EED4FE2 /* Build configuration list for PBXNativeTarget "SuppTrackTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C74C4BCAF734127440A96715 /* Debug */,
+				057BCF26EBD063C9F4FD258C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
 /* End XCConfigurationList section */
 
 /* Begin XCLocalSwiftPackageReference section */
@@ -347,6 +495,10 @@
 
 /* Begin XCSwiftPackageProductDependency section */
 		4224DAE9D2FCF47CF7E1B149 /* SuppTrackCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = SuppTrackCore;
+		};
+		4FF7EF069053DEBBD14B56DA /* SuppTrackCore */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = SuppTrackCore;
 		};

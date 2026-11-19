@@ -21,10 +21,8 @@ struct RootTabView: View {
                 .accessibilityIdentifier("scan-tab")
             }
             Tab("My Bottles", systemImage: "pills") {
-                NavigationStack {
-                    Text("My Bottles").navigationTitle("My Bottles")
-                }
-                .accessibilityIdentifier("bottles-tab")
+                BottlesView()
+                    .accessibilityIdentifier("bottles-tab")
             }
         }
         .accessibilityIdentifier("root-tabs")

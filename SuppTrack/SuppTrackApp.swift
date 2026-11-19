@@ -6,5 +6,6 @@ struct SuppTrackApp: App {
         WindowGroup {
             RootTabView()
         }
+        .modelContainer(for: [Item.self, DoseLog.self])
     }
 }
