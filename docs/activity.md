@@ -68,3 +68,4 @@
 **Prompt 20:** "Approve, build it"
 - Build started on branch `phase-1`. Created the SuppTrackCore Swift package (AgeGroup).
 - Task 2: barcode normalization (UPC/EAN to the DSLD spaced form) and the DSLD label parser, including proprietary blends (members with "not provided" amounts become unknown). 12 tests pass.
+- Task 3: unit conversion (mg/mcg/g, IU for vitamins A/D/E), the adult upper-limit table with the age-based calcium limit, and the overlap calculator (over limit, unknown amounts from blends, shared under limit, missing ingredients). 22 tests pass.
