@@ -1,0 +1,40 @@
+name: SuppTrack
+options:
+  bundleIdPrefix: com.nicksan
+  deploymentTarget:
+    iOS: "26.0"
+packages:
+  SuppTrackCore:
+    path: Packages/SuppTrackCore
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    MARKETING_VERSION: "0.1"
+    CURRENT_PROJECT_VERSION: "1"
+targets:
+  SuppTrack:
+    type: application
+    platform: iOS
+    sources: [SuppTrack]
+    dependencies:
+      - package: SuppTrackCore
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.nicksan.supptrack
+        TARGETED_DEVICE_FAMILY: "1,2"
+        GENERATE_INFOPLIST_FILE: YES
+        CODE_SIGN_STYLE: Automatic
+        INFOPLIST_KEY_CFBundleDisplayName: SuppTrack
+        INFOPLIST_KEY_NSCameraUsageDescription: Scan supplement barcodes
+        INFOPLIST_KEY_NSHealthShareUsageDescription: Read your medications and doses from Apple Health
+        INFOPLIST_KEY_UILaunchScreen_Generation: YES
+        INFOPLIST_KEY_UIApplicationSceneManifest_Generation: YES
+        INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone: UIInterfaceOrientationPortrait
+        INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad: "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight"
+schemes:
+  SuppTrack:
+    build:
+      targets:
+        SuppTrack: all
+    run:
+      config: Debug

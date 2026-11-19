@@ -71,3 +71,4 @@
 - Task 3: unit conversion (mg/mcg/g, IU for vitamins A/D/E), the adult upper-limit table with the age-based calcium limit, and the overlap calculator (over limit, unknown amounts from blends, shared under limit, missing ingredients). 22 tests pass.
 - Task 4: default AM/PM slot and how-to-take notes, prescription spacing rules (thyroid, antibiotics, osteoporosis drugs), the iron/calcium 2-hour rule, and "Ask your doctor" flags (warfarin, St. John's wort). 40 tests pass.
 - Task 5: LookupClient for NIH DSLD (barcode lookup choosing the newest matching label, name search), Open Food Facts (product-name fallback) and RxNorm (prescription search, SCD/SBD only). Errors: bad barcode, network, server status. 49 tests pass.
+- Task 1: XcodeGen project (universal iPhone + iPad, iOS 26), app shell with Today / Scan / My Bottles tabs, first-launch disclaimer with an age-group picker, a Settings screen, and a repo CLAUDE.md. Built and launched in the iPhone 17 simulator.
