@@ -34,9 +34,14 @@ public enum UpperLimits {
 
     private static let aliases = ["folic acid": "folate", "pyridoxine": "vitamin b6"]
 
+    /// Lowercased group name with aliases folded ("folic acid" → "folate"), used to group ingredients.
+    public static func canonicalKey(_ group: String) -> String {
+        let key = group.lowercased()
+        return aliases[key] ?? key
+    }
+
     public static func limit(for group: String, age: AgeGroup) -> UpperLimit? {
-        var key = group.lowercased()
-        key = aliases[key] ?? key
+        let key = canonicalKey(group)
         guard var found = table.first(where: { $0.group.lowercased() == key }) else { return nil }
         if found.group == "Calcium", age == .adult51plus { found.amount.value = 2_000 }
         return found

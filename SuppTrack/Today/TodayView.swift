@@ -8,6 +8,9 @@ struct TodayView: View {
     @Query(sort: \Item.createdAt) private var items: [Item]
     @Query private var logs: [DoseLog]
     @AppStorage("ageGroup") private var ageGroup = AgeGroup.adult19to50
+    @Environment(\.scenePhase) private var scenePhase
+    /// Refreshed at midnight and whenever the app comes back, so yesterday's checks clear.
+    @State private var now = Date.now
     @State private var slot = TodayModel.defaultSlot(now: .now, calendar: .current)
     @State private var showSettings = false
 
@@ -60,11 +63,24 @@ struct TodayView: View {
             }
             .sheet(isPresented: $showSettings) { SettingsView() }
         }
+        .onReceive(NotificationCenter.default.publisher(for: .NSCalendarDayChanged)) { _ in refreshClock() }
+        .onChange(of: scenePhase) { _, phase in if phase == .active { refreshClock() } }
         .accessibilityIdentifier("today-screen")
     }
 
+    /// Picks up a new day, and resets AM/PM when the half of the day has changed.
+    private func refreshClock() {
+        let newNow = Date.now
+        let cal = Calendar.current
+        if !cal.isDate(newNow, inSameDayAs: now)
+            || TodayModel.defaultSlot(now: newNow, calendar: cal) != TodayModel.defaultSlot(now: now, calendar: cal) {
+            slot = TodayModel.defaultSlot(now: newNow, calendar: cal)
+        }
+        now = newNow
+    }
+
     private var rows: [TodayRow] {
-        TodayModel.rows(items: items, logs: logs, slot: slot, now: .now, calendar: .current)
+        TodayModel.rows(items: items, logs: logs, slot: slot, now: now, calendar: .current)
     }
 
     private var warnings: [String] {
@@ -81,6 +97,7 @@ struct TodayView: View {
     }
 
     private func toggle(_ row: TodayRow) {
+        refreshClock()
         if row.isChecked {
             for log in logs where log.itemID == row.item.id && log.slot == slot
                 && Calendar.current.isDateInToday(log.takenAt) {

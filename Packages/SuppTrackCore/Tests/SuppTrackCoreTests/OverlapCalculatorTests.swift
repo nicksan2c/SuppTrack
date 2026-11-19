@@ -15,7 +15,7 @@ private func ing(_ group: String, _ value: Double?, _ unit: String = "mg", blend
         item("Multi", [ing("Magnesium", 400)]),
         item("Mag", [ing("Magnesium", 120)]),
     ], age: .adult19to50)
-    let over = f.compactMap { if case let .overLimit(g, total, limit) = $0 { (g, total, limit) } else { nil } }
+    let over = f.compactMap { if case let .overLimit(g, total, limit, _) = $0 { (g, total, limit) } else { nil } }
     #expect(over.count == 1)
     #expect(over.first?.0 == "Magnesium")
     #expect(over.first?.1 == Amount(value: 520, unit: "mg"))
@@ -40,7 +40,7 @@ private func ing(_ group: String, _ value: Double?, _ unit: String = "mg", blend
 
 @Test func servingsPerDayMultiplyTheAmount() {
     let f = OverlapCalculator.findings([item("Zinc", [ing("Zinc", 25)], servings: 2)], age: .adult19to50)
-    #expect(f.contains { if case let .overLimit(_, total, _) = $0 { total.value == 50 } else { false } })
+    #expect(f.contains { if case let .overLimit(_, total, _, _) = $0 { total.value == 50 } else { false } })
 }
 
 @Test func blendMemberWithUnknownAmountGivesBothFindings() {
@@ -48,7 +48,7 @@ private func ing(_ group: String, _ value: Double?, _ unit: String = "mg", blend
         item("Mag", [ing("Magnesium", 400)]),
         item("Sleep blend", [ing("Magnesium", nil, blend: "Sleep Blend")]),
     ], age: .adult19to50)
-    #expect(f.contains { if case .overLimit(group: "Magnesium", _, _) = $0 { true } else { false } })
+    #expect(f.contains { if case .overLimit(group: "Magnesium", _, _, _) = $0 { true } else { false } })
     #expect(f.contains(.unknownAmounts(group: "Magnesium", itemCount: 2, unknownCount: 1)))
 }
 

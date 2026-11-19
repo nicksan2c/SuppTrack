@@ -1,6 +1,6 @@
 # SuppTrack Phase 1 Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task by task. Steps use checkbox (`- [ ]`) syntax for tracking.
+> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task by task. Steps use checkbox (`- [x]`) syntax for tracking.
 
 **Goal:** a universal iPhone + iPad app that scans supplement barcodes, totals overlapping ingredients against upper limits, and shows an AM/PM checklist with prescription spacing rules. It imports from Apple Health and syncs through iCloud.
 
@@ -39,17 +39,17 @@
 - `public enum AgeGroup: String, Codable, CaseIterable { case adult19to50, adult51plus }`
 - `@AppStorage("ageGroup")`, `@AppStorage("disclaimerAccepted")`, and `@AppStorage("healthImportEnabled")` (default `false`)
 
-- [ ] Install XcodeGen with `brew install xcodegen`. Expected: `xcodegen --version` prints a version.
-- [ ] Write `project.yml`:
+- [x] Install XcodeGen with `brew install xcodegen`. Expected: `xcodegen --version` prints a version.
+- [x] Write `project.yml`:
   - an app target `SuppTrack` (iOS 26.0, `TARGETED_DEVICE_FAMILY: "1,2"`, bundle id `com.nicksan.supptrack`) that depends on the local package `SuppTrackCore`;
   - Info.plist keys `NSCameraUsageDescription` = "Scan supplement barcodes", `NSHealthShareUsageDescription` = "Read your medications and doses from Apple Health".
-- [ ] Write the `RootTabView`, with tabs Today, Scan and My Bottles (placeholder views) and a gear button that opens `SettingsView`.
+- [x] Write the `RootTabView`, with tabs Today, Scan and My Bottles (placeholder views) and a gear button that opens `SettingsView`.
   - `DisclaimerView` is shown as a full-screen cover while `disclaimerAccepted == false`. It shows the disclaimer text, an `AgeGroup` picker, and an "I understand" button.
-- [ ] Write the smoke test `AgeGroup.allCases.count == 2`.
-- [ ] Run `swift test --package-path Packages/SuppTrackCore`. Expected: PASS.
-- [ ] Run `xcodegen && xcodebuild -project SuppTrack.xcodeproj -scheme SuppTrack -destination 'generic/platform=iOS Simulator' build`. Expected: `BUILD SUCCEEDED`.
-- [ ] Launch in the iOS Simulator. The disclaimer appears, then the three tabs.
-- [ ] Commit "feat: project scaffold, tabs, disclaimer" and push.
+- [x] Write the smoke test `AgeGroup.allCases.count == 2`.
+- [x] Run `swift test --package-path Packages/SuppTrackCore`. Expected: PASS.
+- [x] Run `xcodegen && xcodebuild -project SuppTrack.xcodeproj -scheme SuppTrack -destination 'generic/platform=iOS Simulator' build`. Expected: `BUILD SUCCEEDED`.
+- [x] Launch in the iOS Simulator. The disclaimer appears, then the three tabs.
+- [x] Commit "feat: project scaffold, tabs, disclaimer" and push.
 
 ### Task 2: UPC normalization and DSLD label parsing (blends included)
 **Files:**
@@ -64,7 +64,7 @@
 - `public struct LabelInfo: Codable { var dsldId: Int; var name: String; var brand: String; var upc: String; var servingUnit: String; var servingQuantity: Double; var entryDate: String; var ingredients: [Ingredient] }`
 - `public enum DSLDLabelParser { static func parse(_ data: Data) throws -> LabelInfo }`
 
-- [ ] Write the failing tests:
+- [x] Write the failing tests:
   - `UPC.normalize("0031604026165") == "031604026165"`
   - `UPC.normalize("0 31604-02616 5") == "031604026165"`
   - `UPC.normalize("123") == nil`
@@ -72,10 +72,10 @@
   - label 8955 gives an ingredient with group "Vitamin D" and `amount == Amount(value: 200, unit: "IU")`
   - label 78540 gives two ingredients with `amount == nil`, `blendName == "LOWAT Proprietary Blend"` and `blendTotal == Amount(value: 300, unit: "mg")`
   - a row with empty `quantity` gives `amount == nil` (inline JSON)
-- [ ] Run `swift test`. Expected: FAIL.
-- [ ] Implement. The parser uses `quantity[0]`, maps unit `"NP"` or a quantity of 0 in a blend member to `nil`, flattens `nestedRows` of `category == "blend"` rows, and keeps non-blend `nestedRows` (for example, under "Total Fat") out of the list.
-- [ ] Run `swift test`. Expected: PASS.
-- [ ] Commit and push.
+- [x] Run `swift test`. Expected: FAIL.
+- [x] Implement. The parser uses `quantity[0]`, maps unit `"NP"` or a quantity of 0 in a blend member to `nil`, flattens `nestedRows` of `category == "blend"` rows, and keeps non-blend `nestedRows` (for example, under "Total Fat") out of the list.
+- [x] Run `swift test`. Expected: PASS.
+- [x] Commit and push.
 
 ### Task 3: Units, upper limits and overlap calculator
 **Files:**
@@ -92,7 +92,7 @@
   - `public enum OverlapFinding: Hashable { case overLimit(group: String, total: Amount, limit: UpperLimit), unknownAmounts(group: String, itemCount: Int, unknownCount: Int), sharedUnderLimit(group: String, itemCount: Int), missingIngredients(itemCount: Int) }`
   - `OverlapCalculator.findings(_ items: [ItemSnapshot], age: AgeGroup) -> [OverlapFinding]`
 
-- [ ] Write the failing tests:
+- [x] Write the failing tests:
   - 2 items with Magnesium 400 mg × 1 and 120 mg × 1 give `.overLimit(group: "Magnesium", total: 520 mg, …)` with `limit.amount == 350 mg`
   - Vitamin D 2,000 IU plus 50 mcg gives a total of 100 mcg and no warning (equal to the limit is not over)
   - Calcium 2,200 mg is over for `.adult51plus` and not over for `.adult19to50`
@@ -100,10 +100,10 @@
   - Zinc 10 mg plus 5 mg gives `.sharedUnderLimit`
   - an item with no ingredients and `isRx == false` gives `.missingIngredients(itemCount: 1)`
   - Vitamin E in `"{Calories}"` units is reported as unknown, not converted
-- [ ] Run `swift test`. Expected: FAIL.
-- [ ] Implement. Group by `Ingredient.group`, multiply by `dailyServings`, and skip `isRx` items.
-- [ ] Run `swift test`. Expected: PASS.
-- [ ] Commit and push.
+- [x] Run `swift test`. Expected: FAIL.
+- [x] Implement. Group by `Ingredient.group`, multiply by `dailyServings`, and skip `isRx` items.
+- [x] Run `swift test`. Expected: PASS.
+- [x] Commit and push.
 
 ### Task 4: Timing defaults, spacing rules and doctor flags
 **Files:**
@@ -121,7 +121,7 @@
   - `SpacingRules.doctorFlags(rxNames: [UUID: String], supplements: [ItemSnapshot]) -> [DoctorFlag]`
   - `SpacingRules.suggestedSlot(for supplement: ItemSnapshot, rxNames: [UUID: String], rxSlots: [UUID: Slot]) -> Slot?` (the opposite slot when there's a conflict)
 
-- [ ] Write the failing tests:
+- [x] Write the failing tests:
   - groups ["Magnesium"] give `.pm`; groups ["Vitamin D"] give `.am` with the note "with food"
   - "levothyroxine sodium 0.1 MG Oral Tablet" in AM, with a multivitamin containing Calcium in AM, gives `hours == 4`
   - the same pair taken at 06:30 gives `notBefore == 10:30`
@@ -132,10 +132,10 @@
   - "warfarin" with Fish Oil gives a `DoctorFlag` starting "Ask your doctor:"
   - St. John's Wort with any Rx gives a `DoctorFlag`
   - `suggestedSlot` for Calcium with levothyroxine in AM is `.pm`
-- [ ] Run `swift test`. Expected: FAIL.
-- [ ] Implement. The rule table is data, a static array of `(rxSubstrings, groups, hours)`, taken from the spec section 8 table.
-- [ ] Run `swift test`. Expected: PASS.
-- [ ] Commit and push.
+- [x] Run `swift test`. Expected: FAIL.
+- [x] Implement. The rule table is data, a static array of `(rxSubstrings, groups, hours)`, taken from the spec section 8 table.
+- [x] Run `swift test`. Expected: PASS.
+- [x] Commit and push.
 
 ### Task 5: HTTP clients (DSLD, Open Food Facts, RxNorm)
 **Files:**
@@ -150,15 +150,15 @@
   - `public final class LookupClient { init(session: URLSession = .shared); func label(forBarcode raw: String) async throws -> LabelInfo?; func searchLabels(_ text: String) async throws -> [LabelHit]; func label(id: Int) async throws -> LabelInfo; func productName(forBarcode raw: String) async throws -> String? /* OFF "brand name" */; func searchRx(_ text: String) async throws -> [RxDrug] /* tty SCD or SBD */ }`
   - `public enum LookupError: Error { case badBarcode, network, server(Int) }`
 
-- [ ] Write the failing tests:
+- [x] Write the failing tests:
   - `label(forBarcode: "031604026165")` returns the label whose `upc == "0 31604 02616 5"`, choosing the newer `entryDate` of 2 matches
   - zero hits return `nil`
   - an HTTP 503 throws `.server(503)`
   - `searchRx("levothyroxine")` returns only SCD/SBD entries (inline fixture)
-- [ ] Run `swift test`. Expected: FAIL.
-- [ ] Implement with `URLSession` async APIs, set the User-Agent header, and use a 15 s timeout.
-- [ ] Run `swift test`. Expected: PASS.
-- [ ] Commit and push.
+- [x] Run `swift test`. Expected: FAIL.
+- [x] Implement with `URLSession` async APIs, set the User-Agent header, and use a 15 s timeout.
+- [x] Run `swift test`. Expected: PASS.
+- [x] Commit and push.
 
 ### Task 6: SwiftData models and My Bottles (list, detail, manual entry)
 **Files:**
@@ -170,13 +170,13 @@
   - `@Model final class Item { var id: UUID = UUID(); var name: String = ""; var brand: String = ""; var isRx: Bool = false; var upc: String?; var dsldId: Int?; var rxcui: String?; var healthConceptID: String?; var amServings: Double = 0; var pmServings: Double = 0; var doseText: String = ""; var note: String?; var isHidden: Bool = false; var isActive: Bool = true; var ingredientsJSON: Data = Data(); var ingredients: [Ingredient] { get set } /* JSON-coded */; var snapshot: ItemSnapshot }`
   - `@Model final class DoseLog { var itemID: UUID = UUID(); var slotRaw: String = "am"; var takenAt: Date = .now }`
 
-- [ ] Write the `Item` and `DoseLog` models. Ingredients are stored as a JSON `Data` blob, which keeps CloudKit simple.
-- [ ] Write a Core-free unit test target `SuppTrackTests` with `ItemTests`. It checks that `ingredients` round-trips through JSON, and that `snapshot.dailyServings == amServings + pmServings`.
-- [ ] `BottlesView`: a `NavigationSplitView` (iPad: list plus detail; iPhone: push). It lists active, non-hidden items, with an "Rx" tag and a "No ingredients yet" badge.
-- [ ] `BottleDetailView`: shows ingredients, and blend members read "amount not listed (part of X · Y total)". It has `.sharedUnderLimit` info lines, AM/PM servings steppers, a note field, and Delete (which hides imported items and deletes the rest).
-- [ ] `ManualEntryView`: name, brand, Rx toggle, and ingredient rows (name, optional amount, unit picker mg/mcg/g/IU). The group equals the typed name.
-- [ ] Build and run in the simulator. Add a manual item with Magnesium 400 mg and see it in the list and detail.
-- [ ] Commit and push.
+- [x] Write the `Item` and `DoseLog` models. Ingredients are stored as a JSON `Data` blob, which keeps CloudKit simple.
+- [x] Write a Core-free unit test target `SuppTrackTests` with `ItemTests`. It checks that `ingredients` round-trips through JSON, and that `snapshot.dailyServings == amServings + pmServings`.
+- [x] `BottlesView`: a `NavigationSplitView` (iPad: list plus detail; iPhone: push). It lists active, non-hidden items, with an "Rx" tag and a "No ingredients yet" badge.
+- [x] `BottleDetailView`: shows ingredients, and blend members read "amount not listed (part of X · Y total)". It has `.sharedUnderLimit` info lines, AM/PM servings steppers, a note field, and Delete (which hides imported items and deletes the rest).
+- [x] `ManualEntryView`: name, brand, Rx toggle, and ingredient rows (name, optional amount, unit picker mg/mcg/g/IU). The group equals the typed name.
+- [x] Build and run in the simulator. Add a manual item with Magnesium 400 mg and see it in the list and detail.
+- [x] Commit and push.
 
 ### Task 7: Scan tab (scanner, typed barcode, lookup flow, confirm, Rx add)
 **Files:**
@@ -185,12 +185,12 @@
 **Interfaces:**
 - Consumes `LookupClient` (Task 5), `TimingRules` and `SpacingRules.suggestedSlot` (Task 4), and `Item` (Task 6).
 
-- [ ] `ScanView` holds the scanner (hidden when `DataScannerViewController.isSupported == false`, as in the simulator), a "type barcode" field, a "Search by name" field, and "Add prescription."
-- [ ] The lookup chain follows spec section 6: `label(forBarcode:)`, then OFF `productName` into `searchLabels` with a pick list, then manual entry. Each fallback shows why ("Not found in NIH database").
-- [ ] `ConfirmItemView` shows the name, brand and ingredients. AM/PM servings are prefilled from `TimingRules.defaults`, and swapped to `suggestedSlot` if there's a conflict. Saving inserts an `Item`.
-- [ ] `RxSearchView` uses `searchRx`, and picking a result inserts `Item(isRx: true, rxcui:, name:)`. It warns on save if `SpacingRules.doctorFlags` is non-empty.
-- [ ] In the simulator, type `031604026165`. The confirm screen shows Nature Made CoQ10 200 mg. Save it. Type `000000000000` and confirm it falls through to manual entry. Turn on airplane-style failure (stop the network with Link Conditioner or disconnect Wi-Fi) and confirm a message appears with no crash.
-- [ ] Commit and push.
+- [x] `ScanView` holds the scanner (hidden when `DataScannerViewController.isSupported == false`, as in the simulator), a "type barcode" field, a "Search by name" field, and "Add prescription."
+- [x] The lookup chain follows spec section 6: `label(forBarcode:)`, then OFF `productName` into `searchLabels` with a pick list, then manual entry. Each fallback shows why ("Not found in NIH database").
+- [x] `ConfirmItemView` shows the name, brand and ingredients. AM/PM servings are prefilled from `TimingRules.defaults`, and swapped to `suggestedSlot` if there's a conflict. Saving inserts an `Item`.
+- [x] `RxSearchView` uses `searchRx`, and picking a result inserts `Item(isRx: true, rxcui:, name:)`. It warns on save if `SpacingRules.doctorFlags` is non-empty.
+- [x] In the simulator, type `031604026165`. The confirm screen shows Nature Made CoQ10 200 mg. Save it. Type `000000000000` and confirm it falls through to manual entry. Turn on airplane-style failure (stop the network with Link Conditioner or disconnect Wi-Fi) and confirm a message appears with no crash.
+- [x] Commit and push.
 
 ### Task 8: Today tab
 **Files:**
@@ -201,20 +201,20 @@
 - Consumes `OverlapCalculator`, `SpacingRules`, `Item` and `DoseLog`.
 - Produces: `struct TodayModel { static func rows(items: [Item], logs: [DoseLog], slot: Slot, now: Date, calendar: Calendar) -> [TodayRow]; static func defaultSlot(now: Date, calendar: Calendar) -> Slot }`, where `TodayRow` has `item`, `isChecked`, `hint: SpacingHint?`.
 
-- [ ] Write the failing tests:
+- [x] Write the failing tests:
   - `defaultSlot` at 11:59 is `.am`, and at 12:00 is `.pm`
   - a `DoseLog` from yesterday 23:59 does not check today's row
   - an item with `amServings == 1` and `pmServings == 1` appears in both slots, with independent checks
-- [ ] Run `xcodebuild test -scheme SuppTrack -destination 'platform=iOS Simulator,name=<installed iPhone>'`. Expected: FAIL. Implement, then run again. Expected: PASS.
-- [ ] `TodayView` matches the mockup:
+- [x] Run `xcodebuild test -scheme SuppTrack -destination 'platform=iOS Simulator,name=<installed iPhone>'`. Expected: FAIL. Implement, then run again. Expected: PASS.
+- [x] `TodayView` matches the mockup:
   - the AM/PM segmented control;
   - banners for `.overLimit`, `.unknownAmounts`, `.missingIngredients` and doctor flags;
   - rows with a checkbox, name, Rx tag, dose and note;
   - a dashed checkbox plus "after HH:MM · N hrs after X" on rows with a hint;
   - the disclaimer footer.
   - Checking a row inserts a `DoseLog`, and unchecking deletes today's log for that slot.
-- [ ] In the simulator, the Magnesium 520 mg warning shows, and a levothyroxine-plus-multivitamin hint appears after levothyroxine is checked.
-- [ ] Commit and push.
+- [x] In the simulator, the Magnesium 520 mg warning shows, and a levothyroxine-plus-multivitamin hint appears after levothyroxine is checked.
+- [x] Commit and push.
 
 ### Task 9: Apple Health import and iCloud sync (needs paid developer membership)
 **Files:**
@@ -241,4 +241,14 @@
 ---
 
 ## Review
-*(To be filled in after the build.)*
+**Status (2026-11-18):** Tasks 1–8 are done on branch `phase-1` and pushed. Task 9 (Apple Health and iCloud) is waiting on the paid Apple Developer membership. Task 10 (installing on the iPhone and iPad) needs Nick.
+
+**What was built**
+- **SuppTrackCore** (63 tests): barcode normalization; the NIH label parser, including proprietary blends; unit conversion; adult upper limits with the age-based calcium limit; overlap math ("at least" when part is unknown, findings only for nutrients that have a limit); AM/PM defaults; prescription spacing rules and "Ask your doctor" flags; warning wording; and the lookup client for NIH DSLD, Open Food Facts and RxNorm.
+- **App** (10 tests): the disclaimer and age group, Settings, My Bottles (list and detail, split view on iPad, manual entry, doctor flags), Scan (camera, typed barcode, name search, confirm, prescription search), and Today (AM/PM, warnings, checkboxes, spacing times, a reset at midnight).
+
+**Checked in the iPhone 17 simulator:** a live barcode lookup (Nature Made CoQ10); the fallback for an unknown barcode; a levothyroxine search; Magnesium 400 mg defaulting to PM with the over-limit warning; and checking off levothyroxine setting the multivitamin to "after" 4 hours later.
+
+**Final review** (independent reviewer): 1 critical and 4 important findings were fixed, plus 2 minors that were promoted because they could understate totals. 9 minors are deferred and listed in the ledger summary given to Nick.
+
+**Not verified yet:** the camera scanner on a real device, the first-tap behavior after typing (a possible simulator artifact), and iPad layout on a real device.

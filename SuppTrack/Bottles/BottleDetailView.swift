@@ -55,7 +55,7 @@ struct BottleDetailView: View {
         let myGroups = Set(item.ingredients.map { $0.group.lowercased() })
         return OverlapCalculator.findings(allItems.map(\.snapshot), age: ageGroup).compactMap { f in
             switch f {
-            case let .overLimit(g, _, _), let .unknownAmounts(g, _, _), let .sharedUnderLimit(g, _):
+            case let .overLimit(g, _, _, _), let .unknownAmounts(g, _, _), let .sharedUnderLimit(g, _):
                 myGroups.contains(g.lowercased()) ? FindingText.text(f) : nil
             case .missingIngredients:
                 nil
@@ -75,14 +75,7 @@ struct BottleDetailView: View {
 }
 
 enum IngredientText {
-    static func amount(_ ing: Ingredient) -> String {
-        if let a = ing.amount { return FindingText.format(a) }
-        if let blend = ing.blendName {
-            let total = ing.blendTotal.map { " · \(FindingText.format($0)) total" } ?? ""
-            return "amount not listed (part of \(blend)\(total))"
-        }
-        return "amount not listed"
-    }
+    static func amount(_ ing: Ingredient) -> String { FindingText.amountText(ing) }
 }
 
 extension Binding where Value == String {

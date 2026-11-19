@@ -1,3 +1,4 @@
+import SuppTrackCore
 import SwiftData
 import SwiftUI
 
@@ -11,6 +12,17 @@ struct BottlesView: View {
     var body: some View {
         NavigationSplitView {
             List(selection: $selection) {
+                if !doctorFlags.isEmpty {
+                    Section {
+                        ForEach(doctorFlags, id: \.self) { text in
+                            Label(text, systemImage: "exclamationmark.triangle.fill")
+                                .symbolRenderingMode(.multicolor)
+                                .font(.subheadline)
+                        }
+                    }
+                    .listRowBackground(Color.orange.opacity(0.15))
+                    .accessibilityIdentifier("bottles-doctor-flags")
+                }
                 ForEach(items) { item in
                     NavigationLink(value: item) { BottleRow(item: item) }
                 }
@@ -36,6 +48,15 @@ struct BottlesView: View {
         }
         .sheet(isPresented: $showManualEntry) { ManualEntryView() }
         .accessibilityIdentifier("bottles-screen")
+    }
+
+    /// Spec section 8: doctor flags show on Today and My Bottles.
+    private var doctorFlags: [String] {
+        let rx = items.filter(\.isRx)
+        return SpacingRules.doctorFlags(
+            rxNames: Dictionary(uniqueKeysWithValues: rx.map { ($0.id, $0.name) }),
+            supplements: items.filter { !$0.isRx }.map(\.snapshot)
+        ).map(\.text)
     }
 }
 

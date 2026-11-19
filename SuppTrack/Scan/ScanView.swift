@@ -26,6 +26,7 @@ struct ScanView: View {
                 if BarcodeScannerView.isAvailable {
                     Section {
                         BarcodeScannerView { code in
+                            guard !isLoading, confirm == nil else { return }
                             barcode = code
                             Task { await lookUp(code) }
                         }

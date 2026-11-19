@@ -19,7 +19,8 @@ public struct ItemSnapshot: Hashable, Sendable {
 }
 
 public enum OverlapFinding: Hashable, Sendable {
-    case overLimit(group: String, total: Amount, limit: UpperLimit)
+    /// `atLeast` is true when some amounts in the group are unknown, so the total is a minimum.
+    case overLimit(group: String, total: Amount, limit: UpperLimit, atLeast: Bool)
     case unknownAmounts(group: String, itemCount: Int, unknownCount: Int)
     case sharedUnderLimit(group: String, itemCount: Int)
     case missingIngredients(itemCount: Int)
@@ -35,7 +36,7 @@ public enum OverlapCalculator {
         var order: [String] = []
         for item in supplements {
             for ing in item.ingredients {
-                let key = ing.group.lowercased()
+                let key = UpperLimits.canonicalKey(ing.group)
                 if groups[key] == nil { order.append(key) }
                 groups[key, default: []].append((item, ing))
             }
@@ -43,10 +44,11 @@ public enum OverlapCalculator {
 
         for key in order {
             let entries = groups[key]!
-            let limit = UpperLimits.limit(for: entries[0].ingredient.group, age: age)
-            let name = limit?.group ?? entries[0].ingredient.group
+            // Only nutrients with an upper limit get findings; Calories, CFU etc. would be noise.
+            guard let limit = UpperLimits.limit(for: entries[0].ingredient.group, age: age) else { continue }
+            let name = limit.group
             let itemCount = Set(entries.map(\.item.id)).count
-            let targetUnit = limit?.amount.unit ?? entries.compactMap(\.ingredient.amount).first.map { UnitConverter.base($0.unit) } ?? "mg"
+            let targetUnit = limit.amount.unit
 
             var total = 0.0
             var unknownItems = Set<UUID>()
@@ -58,9 +60,10 @@ public enum OverlapCalculator {
                 }
             }
 
-            let over = limit.map { total > $0.amount.value } ?? false
-            if let limit, over {
-                result.append(.overLimit(group: name, total: Amount(value: total, unit: targetUnit), limit: limit))
+            let over = total > limit.amount.value
+            if over {
+                result.append(.overLimit(group: name, total: Amount(value: total, unit: targetUnit), limit: limit,
+                                         atLeast: !unknownItems.isEmpty))
             }
             if itemCount >= 2, !unknownItems.isEmpty {
                 result.append(.unknownAmounts(group: name, itemCount: itemCount, unknownCount: unknownItems.count))

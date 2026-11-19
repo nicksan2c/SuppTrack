@@ -53,7 +53,12 @@ public final class LookupClient: Sendable {
     /// "Brand Product" from Open Food Facts, used to search DSLD by name.
     public func productName(forBarcode raw: String) async throws -> String? {
         guard let upc = UPC.normalize(raw) else { throw LookupError.badBarcode }
-        let data = try await get(Self.off + upc + ".json", query: [URLQueryItem(name: "fields", value: "product_name,brands")])
+        let data: Data
+        do {
+            data = try await get(Self.off + upc + ".json", query: [URLQueryItem(name: "fields", value: "product_name,brands")])
+        } catch LookupError.server(404) {
+            return nil // Open Food Facts answers "product not found" with HTTP 404.
+        }
         struct Response: Decodable {
             struct Product: Decodable { var brands: String?; var product_name: String? }
             var status: Int?

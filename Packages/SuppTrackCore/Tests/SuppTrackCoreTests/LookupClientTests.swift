@@ -87,6 +87,11 @@ private let empty = Data(#"{"hits":[],"stats":{"count":0}}"#.utf8)
         #expect(try await client.productName(forBarcode: "031604026165") == "Nature Made CoQ10")
     }
 
+    @Test func productNameNotFoundAs404ReturnsNil() async throws {
+        let client = makeClient { _ in (404, Data(#"{"status":0,"status_verbose":"product not found"}"#.utf8)) }
+        #expect(try await client.productName(forBarcode: "031604026165") == nil)
+    }
+
     @Test func productNameMissingReturnsNil() async throws {
         let client = makeClient { _ in (200, Data(#"{"status":0}"#.utf8)) }
         #expect(try await client.productName(forBarcode: "031604026165") == nil)

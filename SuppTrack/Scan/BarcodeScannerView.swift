@@ -42,5 +42,10 @@ struct BarcodeScannerView: UIViewControllerRepresentable {
                 return
             }
         }
+
+        /// Once the barcode leaves the frame, the same bottle can be scanned again.
+        func dataScanner(_ scanner: DataScannerViewController, didRemove items: [RecognizedItem], allItems: [RecognizedItem]) {
+            if allItems.isEmpty { lastCode = nil }
+        }
     }
 }
