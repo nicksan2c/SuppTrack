@@ -69,3 +69,4 @@
 - Build started on branch `phase-1`. Created the SuppTrackCore Swift package (AgeGroup).
 - Task 2: barcode normalization (UPC/EAN to the DSLD spaced form) and the DSLD label parser, including proprietary blends (members with "not provided" amounts become unknown). 12 tests pass.
 - Task 3: unit conversion (mg/mcg/g, IU for vitamins A/D/E), the adult upper-limit table with the age-based calcium limit, and the overlap calculator (over limit, unknown amounts from blends, shared under limit, missing ingredients). 22 tests pass.
+- Task 4: default AM/PM slot and how-to-take notes, prescription spacing rules (thyroid, antibiotics, osteoporosis drugs), the iron/calcium 2-hour rule, and "Ask your doctor" flags (warfarin, St. John's wort). 40 tests pass.
