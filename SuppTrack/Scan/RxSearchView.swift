@@ -89,7 +89,6 @@ struct RxSearchView: View {
         item.isRx = true
         item.rxcui = drug.rxcui
         if slot == .am { item.amServings = 1 } else { item.pmServings = 1 }
-        item.doseText = "1"
         context.insert(item)
         dismiss()
     }

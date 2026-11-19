@@ -15,14 +15,17 @@
 		318FE2731F50BAD91D842866 /* SuppTrackApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE03EB79A1A27C6A5E95607B /* SuppTrackApp.swift */; };
 		3B4B16181D0AB8DCE8E16A36 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D9B0323552F05F5A1CFF0A /* Item.swift */; };
 		4091C997D420EDAECFD022DE /* ScanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23796BBDAB082D670A312EA6 /* ScanView.swift */; };
+		746DC2195B63308A8C44C99A /* TodayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1CB96C0409F4A5057D6B39 /* TodayView.swift */; };
 		77258846C9F699A914DFCFB6 /* RxSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A465F08DD42371C534A48301 /* RxSearchView.swift */; };
 		8949FCAE9147036D7D76801D /* ConfirmItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C2391851179144F33CA62A /* ConfirmItemView.swift */; };
 		9C9F54FCBC9A2C2BC3CC2FFE /* SuppTrackCore in Frameworks */ = {isa = PBXBuildFile; productRef = 4224DAE9D2FCF47CF7E1B149 /* SuppTrackCore */; };
 		A281D3CCABB2C9C117AEC837 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0073CB0F5E71D0506E9F03A /* SettingsView.swift */; };
 		BD4F2AC7AB8052E87582C402 /* RootTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC43D2D27729FCB669079CC /* RootTabView.swift */; };
+		CC7DE0D0C04EAD761F8F6E3A /* TodayModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8297B18E1B80CC9031A62557 /* TodayModelTests.swift */; };
 		D7479B1BDC0764490D715796 /* SuppTrackCore in Frameworks */ = {isa = PBXBuildFile; productRef = 4FF7EF069053DEBBD14B56DA /* SuppTrackCore */; };
 		E12DD20B596F66B6E327BD8E /* ItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA5C550C1541C8DE26A0D334 /* ItemTests.swift */; };
 		E25EFCD43DDA3C9DBB6DC3C9 /* BottlesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0311D90499320610537F4D07 /* BottlesView.swift */; };
+		F8F0EE77FAEB66DA266E7CB2 /* TodayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7BCAC7CA11B212952E3E91 /* TodayModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,12 +41,15 @@
 /* Begin PBXFileReference section */
 		0311D90499320610537F4D07 /* BottlesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottlesView.swift; sourceTree = "<group>"; };
 		198851067D3BBF2871AD2499 /* SuppTrack.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = SuppTrack.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A7BCAC7CA11B212952E3E91 /* TodayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayModel.swift; sourceTree = "<group>"; };
 		23796BBDAB082D670A312EA6 /* ScanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanView.swift; sourceTree = "<group>"; };
 		2958051B615ED85A63CFC76F /* SuppTrackTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = SuppTrackTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		31C2391851179144F33CA62A /* ConfirmItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmItemView.swift; sourceTree = "<group>"; };
 		3DFA0580F239C06D1AA6B76B /* SuppTrackCore */ = {isa = PBXFileReference; lastKnownFileType = folder; name = SuppTrackCore; path = Packages/SuppTrackCore; sourceTree = SOURCE_ROOT; };
 		59243CAAEF8F321C23EA94EB /* ManualEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualEntryView.swift; sourceTree = "<group>"; };
+		8297B18E1B80CC9031A62557 /* TodayModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayModelTests.swift; sourceTree = "<group>"; };
 		86E5947183B0AB026851688F /* DoseLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoseLog.swift; sourceTree = "<group>"; };
+		8A1CB96C0409F4A5057D6B39 /* TodayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayView.swift; sourceTree = "<group>"; };
 		8E93AECC04A12BDBAF0E5CC7 /* DisclaimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisclaimerView.swift; sourceTree = "<group>"; };
 		A465F08DD42371C534A48301 /* RxSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxSearchView.swift; sourceTree = "<group>"; };
 		AE03EB79A1A27C6A5E95607B /* SuppTrackApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuppTrackApp.swift; sourceTree = "<group>"; };
@@ -121,6 +127,7 @@
 				17969D96E8E80565803FDDCF /* Bottles */,
 				17D142531507A48841137623 /* Models */,
 				72692DED120FF9FAC3853C4A /* Scan */,
+				41C64E7CFE0031B20BAA2280 /* Today */,
 			);
 			path = SuppTrack;
 			sourceTree = "<group>";
@@ -133,6 +140,15 @@
 				B10BE0498D6B657C241B7D09 /* SuppTrackTests */,
 				059CD5AC58610D7117BE51ED /* Products */,
 			);
+			sourceTree = "<group>";
+		};
+		41C64E7CFE0031B20BAA2280 /* Today */ = {
+			isa = PBXGroup;
+			children = (
+				1A7BCAC7CA11B212952E3E91 /* TodayModel.swift */,
+				8A1CB96C0409F4A5057D6B39 /* TodayView.swift */,
+			);
+			path = Today;
 			sourceTree = "<group>";
 		};
 		72692DED120FF9FAC3853C4A /* Scan */ = {
@@ -150,6 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				EA5C550C1541C8DE26A0D334 /* ItemTests.swift */,
+				8297B18E1B80CC9031A62557 /* TodayModelTests.swift */,
 			);
 			path = SuppTrackTests;
 			sourceTree = "<group>";
@@ -239,6 +256,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E12DD20B596F66B6E327BD8E /* ItemTests.swift in Sources */,
+				CC7DE0D0C04EAD761F8F6E3A /* TodayModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,6 +277,8 @@
 				4091C997D420EDAECFD022DE /* ScanView.swift in Sources */,
 				A281D3CCABB2C9C117AEC837 /* SettingsView.swift in Sources */,
 				318FE2731F50BAD91D842866 /* SuppTrackApp.swift in Sources */,
+				F8F0EE77FAEB66DA266E7CB2 /* TodayModel.swift in Sources */,
+				746DC2195B63308A8C44C99A /* TodayView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
