@@ -15,10 +15,8 @@ struct RootTabView: View {
                 .accessibilityIdentifier("today-tab")
             }
             Tab("Scan", systemImage: "barcode.viewfinder") {
-                NavigationStack {
-                    Text("Scan").navigationTitle("Scan")
-                }
-                .accessibilityIdentifier("scan-tab")
+                ScanView()
+                    .accessibilityIdentifier("scan-tab")
             }
             Tab("My Bottles", systemImage: "pills") {
                 BottlesView()

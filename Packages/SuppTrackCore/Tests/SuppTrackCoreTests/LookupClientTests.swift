@@ -104,4 +104,15 @@ private let empty = Data(#"{"hits":[],"stats":{"count":0}}"#.utf8)
         let drugs = try await client.searchRx("levothyroxine")
         #expect(drugs.map(\.rxcui) == ["892246", "966247"])
     }
+
+    @Test func searchRxSortsByNameSoGenericsPrecedeBrands() async throws {
+        let json = """
+        {"drugGroup":{"conceptGroup":[
+          {"tty":"SBD","conceptProperties":[{"rxcui":"2","name":"levothyroxine sodium 0.1 MG Oral Tablet [Synthroid]"}]},
+          {"tty":"SCD","conceptProperties":[{"rxcui":"3","name":"levothyroxine sodium 0.2 MG Oral Tablet"},
+                                            {"rxcui":"1","name":"levothyroxine sodium 0.1 MG Oral Tablet"}]}]}}
+        """
+        let client = makeClient { _ in (200, Data(json.utf8)) }
+        #expect(try await client.searchRx("levo").map(\.rxcui) == ["1", "2", "3"])
+    }
 }

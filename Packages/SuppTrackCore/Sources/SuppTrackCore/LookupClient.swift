@@ -77,6 +77,7 @@ public final class LookupClient: Sendable {
         return (r.drugGroup.conceptGroup ?? [])
             .filter { $0.tty == "SCD" || $0.tty == "SBD" }
             .flatMap { $0.conceptProperties ?? [] }
+            .sorted { $0.name.localizedStandardCompare($1.name) == .orderedAscending }
     }
 
     private func search(_ q: String) async throws -> [LabelHit] {
