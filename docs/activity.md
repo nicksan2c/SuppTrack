@@ -55,3 +55,12 @@
 - Sorted the builder questions (AM+PM doses, Health merge, age group, spacing direction) into spec section 11 as Claude's calls.
 - Wrote `tasks/todo.md`: the Phase 1 plan, with 10 tasks.
 - Committed and pushed planning docs.
+
+**Prompt 17:** "control my browser and fix the gh auth login"
+- Found that the saved gh token had become a fine-grained PAT without push rights (403). Ran `gh auth setup-git` and started `gh auth login --web`.
+
+**Prompt 18:** "Done, test it"
+- The login was still waiting for Enter, so the push was still refused.
+
+**Prompt 19:** "Pressed Enter"
+- gh login completed with a standard OAuth token (repo scope). The push test passed.
