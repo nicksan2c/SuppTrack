@@ -64,3 +64,7 @@
 
 **Prompt 19:** "Pressed Enter"
 - gh login completed with a standard OAuth token (repo scope). The push test passed.
+
+**Prompt 20:** "Approve, build it"
+- Build started on branch `phase-1`. Created the SuppTrackCore Swift package (AgeGroup).
+- Task 2: barcode normalization (UPC/EAN to the DSLD spaced form) and the DSLD label parser, including proprietary blends (members with "not provided" amounts become unknown). 12 tests pass.
